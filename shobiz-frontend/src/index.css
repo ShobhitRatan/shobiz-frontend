@@ -13,9 +13,85 @@ code {
     monospace;
 }
 
-.nav {
-  flex: content;
-  background-color: white; 
-  color: red;
+.pagination {
+  text-align: center; 
+}
+.pagination > li {
+  display: inline-block;
+  padding-left: 0;
+  text-align: center;  
 }
 
+.pagination > li {
+  list-style: none; 
+  border: 0.9px solid; 
+  text-align: center; 
+}
+.pagination > li > a, 
+.pagination > li > span {
+  position: relative; 
+  float: inline-start;
+  padding: 6px 12px; 
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #2c689c;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-left: -1px;
+  text-align: center; 
+}
+.map {
+  text-align: center; 
+}
+.pagination>li.active>a {
+  color: #fff; 
+  background-color: #db371a;
+  border-color: red; 
+} 
+
+.pagination>li>a.hover {
+  background-color: #db371a;  
+  color: white; 
+}
+.pagination>li:first-child>a,
+.pagination>li:first-child>span {
+  margin-left: 0;
+  padding: 0px; 
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px; 
+  display: none!important; 
+}
+.pagination>li:last-child>a,
+.pagination>li:last-child>span {
+  margin-left: 0;
+  padding: 0px;
+  border-bottom-right-radius: 4px;
+  margin-right: 0;
+  padding: 0px!important;
+  border-top-right-radius: 4px; 
+  display: none!important; 
+}
+
+.card-img-top {
+  position: relative;
+}
+
+.card-title {
+  text-align: center; 
+  font-weight: bold;
+  text-transform: uppercase; 
+}
+.card-text {
+  text-align: justify; 
+  text-align-last: left; 
+}
+h1 {
+  text-align: center; 
+}
+
+.search {
+  text-align: center; 
+}
+nav {
+  text-align: center; 
+}
