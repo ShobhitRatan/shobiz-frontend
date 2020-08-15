@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import Movie from './Movie'
 import axios from 'axios' 
 import ReactPaginate from 'react-paginate' 
+import SearchBar from './SearchBar';
+import FilteredMovieContainer from './FilteredMovieContainer';
+import Filter from './Filter'
 const moviesUrl = "http://localhost:4000/movies" 
 
 class MoviesContainer extends Component {
@@ -11,7 +13,9 @@ class MoviesContainer extends Component {
             offset: 0,
             movies: [],
             perPage: 20,
-            currentPage: 0 
+            currentPage: 0,
+            searchTerm: "", 
+            filter: "All" 
         }
         this.handlePageClick = this.handlePageClick.bind(this); 
     }
@@ -21,14 +25,12 @@ class MoviesContainer extends Component {
         this.recievedData() 
     }
     recievedData = () => {
-        axios .get(moviesUrl)
+        axios.get(moviesUrl)
         .then(res => {
             const data = res.data; 
-            const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-            const postData = slice.map(movie => <><ul><Movie key={movie.id} movie={movie} /></ul></>)
             this.setState({
                 pageCount: Math.ceil(data.length / this.state.perPage),
-                postData
+                movies: data   
             })
         })
     }
@@ -39,7 +41,20 @@ class MoviesContainer extends Component {
     //             movies: movie 
     //         }))
     // } 
-
+    filteredMovies = () => {
+        let filteredMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(this.state.searchTerm))
+        const slice = filteredMovies.slice(this.state.offset, this.state.offset + this.state.perPage)
+        if (this.state.filter === 'All') {
+            return slice 
+        }
+        else if (this.state.filter !== 'All'){
+            slice.filter((movie) => {
+                return movie.language === this.state.filter 
+            })
+            return slice; 
+            console.log(slice); 
+        }
+    } 
     handlePageClick = (e) => {
         const selectedPage = e.selected; 
         const offset = selectedPage * this.state.perPage; 
@@ -51,11 +66,35 @@ class MoviesContainer extends Component {
         })
     }
 
+    handleSearch = (e) => {
+        this.setState({
+            searchTerm: e.target.value 
+        })
+    } 
+
+    handleSelection = (e) => {
+        this.setState({
+            filter: e.target.value 
+        })
+        console.log(e.target.value) 
+    }
+
+    // filterMovies = () => {
+    //     if (this.state.filter === 'All') {
+    //         return this.state.movies; 
+    //     }
+    //     else {
+    //         return this.state.movies.filter(movie => {
+    //             if (movie.language === this.state.filter) return true; 
+    //         })
+    //     }
+    // }
+
     render() {
+        console.log(this.state.filter) 
         return (
             <div>
                 <h1>Movies Page</h1>
-                {this.state.postData} 
                 <ReactPaginate 
                     previousLabel={"prev"}
                     nextLabel={"next"}
@@ -68,6 +107,9 @@ class MoviesContainer extends Component {
                     containerClassName={"pagination"} 
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
+                <SearchBar searchTerm={this.state.searchTerm} handleChange={this.handleSearch} /> 
+                <Filter handleSelection={this.handleSelection} />
+                <FilteredMovieContainer movies={this.filteredMovies()} /> 
             </div>
         )
     }

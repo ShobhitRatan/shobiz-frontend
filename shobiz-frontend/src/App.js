@@ -6,7 +6,8 @@ import ProfileContainer from './ProfileComponents/ProfileContainer'
 import MoviesContainer from './MoviesComponents/MoviesContainer'
 import {Switch, Route} from 'react-router-dom'
 import {withRouter} from 'react-router-dom'
-const moviesUrl = "http://localhost:4000/movies"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Navbar, Nav} from 'react-bootstrap'; 
 class App extends Component {
   state = {
     user: null
@@ -89,7 +90,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <NavBar/>
+        <NavBar bg="light" expand="lg"/>
         <Switch>
           <Route path="/login" render={ this.renderForm } />
           <Route path="/register" render={ this.renderForm } />
