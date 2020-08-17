@@ -4,7 +4,7 @@ class Filter extends Component {
     render() {
         return (
             <nav>
-                <select onChange={e => this.props.handleSelection(e)} id="map">
+                <select name="language" onChange={e => this.props.handleSelection(e)} id="map">
                     <option value="All">All</option>
                     <option value="en">en</option>
                     <option value="he">he</option>
