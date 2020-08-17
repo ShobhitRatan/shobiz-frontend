@@ -16,8 +16,7 @@ class MoviesContainer extends Component {
             perPage: 20,
             currentPage: 0,
             searchTerm: "",
-            language: "", 
-            filter: "All" 
+            language: "All" 
         }
         this.handlePageClick = this.handlePageClick.bind(this); 
     }
@@ -46,7 +45,7 @@ class MoviesContainer extends Component {
 
     languageFilter = () => {
         let {movies, language } = this.state
-        return language ? movies.filter(movie => movie.language === language) : movies
+        return language === "All" ? movies : movies.filter(movie => movie.language === language) 
     }
     
     filteredMovies = () => {
