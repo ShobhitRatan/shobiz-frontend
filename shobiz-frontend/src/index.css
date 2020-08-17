@@ -95,3 +95,24 @@ h1 {
 nav {
   text-align: center; 
 }
+
+.card-header {
+  text-align: center; 
+}
+
+.btn {
+  text-align: center; 
+}
+
+.add-review-form {
+  width: 80%
+}
+
+.input-text {
+  border-radius: 5px;
+  height: 2rem;
+  width: 60%;
+  font-size: 18px;
+  font-family: monospace;
+  margin: 3px;
+}

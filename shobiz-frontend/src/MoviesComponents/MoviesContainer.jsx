@@ -137,6 +137,18 @@ class MoviesContainer extends Component {
                 <SearchBar searchTerm={this.state.searchTerm} handleChange={this.handleSearch} /> 
                 <Filter handleSelection={this.handleSelection} />
                 <FilteredMovieContainer movies={this.filteredMovies()} /> 
+                <ReactPaginate 
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={this.state.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination"} 
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
             </div>
         )
     }
