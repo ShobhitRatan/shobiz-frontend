@@ -39,8 +39,8 @@ class Movie extends Component {
                                 <Card.Text>{this.props.movie.overview}</Card.Text>
                                 <Card.Text>{this.props.movie.release_date}</Card.Text>
                                 <Card.Title>Reviews</Card.Title>
-                                {this.props.movie.reviews.map(review => <Review key={review.id} review={review} />)}
-                                {this.state.display ? <ReviewForm addReview={this.addReview}/> : null}
+                                {this.props.movie.reviews.map(review => <Review key={review.id} review={review} increaseLikes={this.increaseLikes} deleteReview={this.deleteReview} />)}
+                                {this.state.display ? <ReviewForm addReview={this.props.addReview()}/> : null}
                                 <Button onClick={this.handleDisplay}>Add a Review</Button>
                             </Card.Body>
                         </Card>

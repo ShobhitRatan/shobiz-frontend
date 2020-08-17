@@ -16,7 +16,7 @@ class MoviesContainer extends Component {
             perPage: 20,
             currentPage: 0,
             searchTerm: "", 
-            filter: "All" 
+            filter: "All",
         }
         this.handlePageClick = this.handlePageClick.bind(this); 
     }
