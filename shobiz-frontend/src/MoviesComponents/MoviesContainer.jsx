@@ -15,7 +15,8 @@ class MoviesContainer extends Component {
             movies: [],
             perPage: 20,
             currentPage: 0,
-            searchTerm: "", 
+            searchTerm: "",
+            language: "", 
             filter: "All" 
         }
         this.handlePageClick = this.handlePageClick.bind(this); 
@@ -42,19 +43,25 @@ class MoviesContainer extends Component {
     //             movies: movie 
     //         }))
     // } 
+
+    languageFilter = () => {
+        let {movies, language } = this.state
+        return language ? movies.filter(movie => movie.language === language) : movies
+    }
+    
     filteredMovies = () => {
-        let filteredMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(this.state.searchTerm))
-        const slice = filteredMovies.slice(this.state.offset, this.state.offset + this.state.perPage)
-        if (this.state.filter === 'All') {
-            return slice 
-        }
-        else if (this.state.filter !== 'All'){
-            slice.filter((movie) => {
-                return movie.language === this.state.filter 
-            })
-            return slice; 
-        }
+        let { searchTerm } = this.state
+        return this.languageFilter().filter(movie => movie.title.toLowerCase().includes(searchTerm.toLowerCase()))   
     } 
+
+    pageCount = () => {
+        let pageCount =  Math.ceil(this.filteredMovies().length / this.state.perPage)
+        return pageCount ? pageCount : undefined  
+    } 
+    
+    slicedMovies = () => this.filteredMovies().slice(this.state.offset, this.state.offset + this.state.perPage)
+
+    
     handlePageClick = (e) => {
         const selectedPage = e.selected; 
         const offset = selectedPage * this.state.perPage; 
@@ -73,10 +80,10 @@ class MoviesContainer extends Component {
     } 
 
     handleSelection = (e) => {
+        let { name, value } = e.target
         this.setState({
-            filter: e.target.value 
+            [name]: value
         })
-        console.log(e.target.value) 
     }
 
     // filterMovies = () => {
@@ -91,7 +98,6 @@ class MoviesContainer extends Component {
     // }
 
     render() {
-        console.log(this.state.filter) 
         return (
             <div>
                 <h1>Movies Page</h1>
@@ -100,7 +106,7 @@ class MoviesContainer extends Component {
                     nextLabel={"next"}
                     breakLabel={"..."}
                     breakClassName={"break-me"}
-                    pageCount={this.state.pageCount}
+                    pageCount={this.pageCount()}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
@@ -136,13 +142,13 @@ class MoviesContainer extends Component {
                 </Pagination> */}
                 <SearchBar searchTerm={this.state.searchTerm} handleChange={this.handleSearch} /> 
                 <Filter handleSelection={this.handleSelection} />
-                <FilteredMovieContainer movies={this.filteredMovies()} /> 
+                <FilteredMovieContainer movies={this.slicedMovies()} /> 
                 <ReactPaginate 
                     previousLabel={"prev"}
                     nextLabel={"next"}
                     breakLabel={"..."}
                     breakClassName={"break-me"}
-                    pageCount={this.state.pageCount}
+                    pageCount={this.pageCount()}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
