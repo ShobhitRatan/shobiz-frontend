@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Form from './components/Form'
+import SignupForm from './components/SignupForm'
 import Home from './components/Home'
 import ProfileContainer from './ProfileComponents/ProfileContainer'
 import MoviesContainer from './MoviesComponents/MoviesContainer'
@@ -73,12 +73,12 @@ class App extends Component {
 
   renderForm = (routerProps) => {
     if(routerProps.location.pathname === "/login"){
-      return <Form
+      return <SignupForm 
         formName="Login Form"
         handleSubmit={this.handleLoginSubmit}
       />
     } else if (routerProps.location.pathname === "/register") {
-      return <Form
+      return <SignupForm
         formName="Register Form"
         handleSubmit={this.handleRegisterSubmit}
       />
