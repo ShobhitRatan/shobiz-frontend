@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 import FilteredMovieContainer from './FilteredMovieContainer';
 import Filter from './Filter'
 // import Pagination from 'react-bootstrap-4-pagination'
+const reviews_url = "http://localhost:4000/reviews"
 
 const moviesUrl = "http://localhost:4000/movies" 
 class MoviesContainer extends Component {
@@ -19,6 +20,25 @@ class MoviesContainer extends Component {
             language: "All" 
         }
         this.handlePageClick = this.handlePageClick.bind(this); 
+    }
+
+    addReview = (review) => {
+        review.user_id = this.props.userId
+        fetch(reviews_url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", 
+                Accept: "application/json" 
+            },
+            body: JSON.stringify(review) 
+        })
+        .then(res => res.json()) 
+        .then(data => {
+            const newMovies = [...this.state.movies]
+            newMovies.find(movie => movie.id === review.movie_id).reviews.push(data)
+            console.log(newMovies);
+            this.setState({movies: newMovies})
+        })
     }
 
     componentDidMount() {
@@ -141,7 +161,7 @@ class MoviesContainer extends Component {
                 </Pagination> */}
                 <SearchBar searchTerm={this.state.searchTerm} handleChange={this.handleSearch} /> 
                 <Filter handleSelection={this.handleSelection} />
-                <FilteredMovieContainer movies={this.slicedMovies()} /> 
+                <FilteredMovieContainer addReview={this.addReview} movies={this.slicedMovies()} /> 
                 <ReactPaginate 
                     previousLabel={"prev"}
                     nextLabel={"next"}

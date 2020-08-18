@@ -18,10 +18,9 @@ class ReviewForm extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault() 
-        console.log(this.props)
         this.props.addReview({
             username: e.target.username.value, 
-            title: e.target.title.value, 
+            movie_id: this.props.movieId,
             content: e.target.content.value,
             likes: e.target.likes.value 
         })
@@ -37,7 +36,6 @@ class ReviewForm extends React.Component {
             },
             likes: 0
         })
-        .catch(e => console.error(e)) 
     }
 
     handleChange = (e) => {

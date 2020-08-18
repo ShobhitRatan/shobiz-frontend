@@ -60,7 +60,6 @@ class App extends Component {
   }
 
   handleResponse = (resp) => {
-    console.log(this.props) 
     if(resp.user){
       localStorage.token = resp.token
       this.setState(resp, () => {
@@ -147,7 +146,7 @@ class App extends Component {
                     <Route path="/login" render={this.renderForm} /> 
                     <Route path="/register" render={this.renderForm} /> 
                     <Route path="/profile" render={this.renderProfile} />
-                    <Route path="/movies" exact component={MoviesContainer} /> 
+                    <Route path="/movies" render={() => <MoviesContainer userId={this.state.user.id}/>} /> 
                     <Route path="/" exact component={Home} />
                     <Route render={() => <p>Page not Found</p>} /> 
                   </Switch>
