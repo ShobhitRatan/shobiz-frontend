@@ -19,21 +19,13 @@ class ReviewForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault() 
         this.props.addReview({
-            username: e.target.username.value, 
+            user_id: this.props.userId, 
             movie_id: this.props.movieId,
             content: e.target.content.value,
             likes: e.target.likes.value 
         })
         this.setState({
             content: "",
-            user: {
-                id: 0,
-                username: ""
-            },
-            movie: {
-                id: 0,
-                title: ""
-            },
             likes: 0
         })
     }
@@ -44,7 +36,7 @@ class ReviewForm extends React.Component {
         })
     }
     render() {
-        const {username, title, content, likes} = this.state 
+        const {content, likes} = this.state 
         return (
             // <div className="container">
             //     <form onSubmit={(e) => this.handleSubmit(e)} className="add-review-form">
@@ -60,14 +52,14 @@ class ReviewForm extends React.Component {
             // </form>
             // </div>
             <Form   onSubmit={(e) => this.handleSubmit(e)}> 
-                <Form.Group controlId="formGroupUsername">
+                {/* <Form.Group controlId="formGroupUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control  onChange={this.handleChange} type="text" placeholder="Enter your username please: " value={username} name="username" />
                 </Form.Group> 
                 <Form.Group controlId="formGroupTitle">
                     <Form.Label>Title</Form.Label>
                     <Form.Control onChange={this.handleChange} type="text" placeholder="Please enter the title of the film you want to review: " value={title} name="title" /> 
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group controlId="formGroupContent">
                     <Form.Label>Content</Form.Label>
                     <Form.Control onChange={this.handleChange} as="textarea" placeholder="Please enter the content for your review" rows={10} value={content} name="content" /> 

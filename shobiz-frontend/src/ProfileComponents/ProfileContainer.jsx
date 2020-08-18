@@ -5,7 +5,7 @@ class ProfileContainer extends Component {
         return (
             <div>
                 <h2>{this.props.user.username}&apos;s Profile</h2>
-                {this.props.user.reviews.map(review => <Review key={review.id} review={review} increaseLikes={this.increaseLikes} deleteReview={this.deleteReview}/> )} 
+                {this.props.user.reviews.map(review => <Review key={review.id} review={review} increaseLikes={this.props.increaseLikes} deleteReview={this.props.deleteReview}/> )} 
             </div>
         )
     }

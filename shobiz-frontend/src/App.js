@@ -146,7 +146,7 @@ class App extends Component {
                     <Route path="/login" render={this.renderForm} /> 
                     <Route path="/register" render={this.renderForm} /> 
                     <Route path="/profile" render={this.renderProfile} />
-                    <Route path="/movies" render={() => <MoviesContainer userId={this.state.user.id}/>} /> 
+                    <Route path="/movies" render={() => <MoviesContainer user={this.state.user} userId={this.state.user.id}/>} /> 
                     <Route path="/" exact component={Home} />
                     <Route render={() => <p>Page not Found</p>} /> 
                   </Switch>

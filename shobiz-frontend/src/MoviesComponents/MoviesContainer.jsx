@@ -4,6 +4,7 @@ import ReactPaginate from 'react-paginate'
 import SearchBar from './SearchBar';
 import FilteredMovieContainer from './FilteredMovieContainer';
 import Filter from './Filter'
+
 // import Pagination from 'react-bootstrap-4-pagination'
 const reviews_url = "http://localhost:4000/reviews"
 
@@ -17,9 +18,16 @@ class MoviesContainer extends Component {
             perPage: 20,
             currentPage: 0,
             searchTerm: "",
-            language: "All" 
+            language: "All",
+            display: false 
         }
         this.handlePageClick = this.handlePageClick.bind(this); 
+    }
+    handleDisplay = () => {
+        const val = !this.state.display 
+        this.setState({
+            display: val 
+        })
     }
 
     addReview = (review) => {
@@ -38,6 +46,57 @@ class MoviesContainer extends Component {
             newMovies.find(movie => movie.id === review.movie_id).reviews.push(data)
             console.log(newMovies);
             this.setState({movies: newMovies})
+        })
+    }
+
+    increaseLikes = (review) => {
+        fetch(`${reviews_url}/${review.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json" 
+            },
+            body: JSON.stringify({
+                likes: review.likes + 1 
+            })
+        })
+        .then(res => res.json())
+        .then(res => {
+            // const newReviews = this.state.reviews.map(checkReview => {
+            //     const newReview = {...checkReview} 
+            //     if (checkReview === review) {
+            //         newReview.likes += 1 
+            //     }
+            //     return newReview 
+            // })
+            // this.setState({
+            //     reviews: newReviews 
+            // })
+            const newMovies = [...this.state.movies] 
+            const movieFound = newMovies.find(movie => movie.id === review.movie.id)
+            const foundReview = movieFound.reviews.find(review => review.id === res.id)
+            foundReview.likes = res.likes  
+            this.setState({
+                movies: newMovies 
+            })
+            
+        })
+    }
+
+    deleteReview = (id) => {
+        fetch(`${reviews_url}/${id}`, {
+            method: "DELETE" 
+        })
+        .then(res => res.json()) 
+        .then(res => {
+            const newMovies = [...this.state.movies] 
+            console.log(res, res.movie.id, newMovies); 
+            const movieFound = newMovies.find(movie => movie.id === res.movie.id)
+            const foundReview = movieFound.reviews.find(review => review.id === res.id) 
+            newMovies.filter(review => review.id !== foundReview.id)  
+            this.setState({
+                movies: newMovies 
+            })
         })
     }
 
@@ -118,6 +177,7 @@ class MoviesContainer extends Component {
 
     render() {
         return (
+            
             <div>
                 <h1>Movies Page</h1>
                 <ReactPaginate 
@@ -161,7 +221,7 @@ class MoviesContainer extends Component {
                 </Pagination> */}
                 <SearchBar searchTerm={this.state.searchTerm} handleChange={this.handleSearch} /> 
                 <Filter handleSelection={this.handleSelection} />
-                <FilteredMovieContainer addReview={this.addReview} movies={this.slicedMovies()} /> 
+                <FilteredMovieContainer addReview={this.addReview} increaseLikes={this.increaseLikes} deleteReview={this.deleteReview} movies={this.slicedMovies()} /> 
                 <ReactPaginate 
                     previousLabel={"prev"}
                     nextLabel={"next"}

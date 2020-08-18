@@ -10,6 +10,9 @@ class Review extends Component {
         this.props.increaseLikes(this.props.review) 
     }
 
+    handleDelete = (e) => {
+        this.props.deleteReview(this.props.review.id) 
+    }
     
     render() {
         return (
@@ -19,7 +22,8 @@ class Review extends Component {
                         <Card.Title>{this.props.review.user.username}</Card.Title>
                         <Card.Text>{this.props.review.movie.title}</Card.Text>
                         <Card.Text>{this.props.review.content}</Card.Text>
-                        <Card.Text><Button onClick={(e) => this.handleLike(e)}>Like{'♥'}</Button>{this.props.review.likes}</Card.Text>
+                        <Card.Text><Button onClick={(e) => this.handleLike(e)}>Like{'♥'}</Button>{this.props.review.likes}</Card.Text> 
+                        <Card.Text><Button onClick={(e) => this.handleDelete(e)} variant="danger">Delete Review</Button></Card.Text>
                     </Card.Body>
                 </Card>
             </CardDeck>
