@@ -61,12 +61,12 @@ class App extends Component {
 
   handleResponse = (resp) => {
     if(resp.user){
-      localStorage.token = resp.token
+      localStorage.setItem("token", resp.token)
       this.setState(resp, () => {
         this.props.history.push("/profile")
       })
     } else {
-      alert(resp.error)
+      // alert(resp.error)
     }
   }
 
