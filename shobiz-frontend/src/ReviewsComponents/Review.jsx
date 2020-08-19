@@ -23,7 +23,7 @@ class Review extends Component {
                         <Card.Text>{this.props.review.movie.title}</Card.Text>
                         <Card.Text>{this.props.review.content}</Card.Text>
                         <Card.Text><Button onClick={(e) => this.handleLike(e)}>Like{'♥'}</Button>{this.props.review.likes}</Card.Text> 
-                        <Card.Text><Button onClick={(e) => this.handleDelete(e)} variant="danger">Delete Review</Button></Card.Text>
+                        <Card.Text><Button onClick={this.handleDelete} variant="danger">Delete Review</Button></Card.Text>
                     </Card.Body>
                 </Card>
             </CardDeck>

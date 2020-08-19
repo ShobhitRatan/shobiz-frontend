@@ -45,7 +45,6 @@ class MoviesContainer extends Component {
         .then(data => {
             const newMovies = [...this.state.movies]
             newMovies.find(movie => movie.id === review.movie_id).reviews.push(data)
-            console.log(newMovies);
             this.setState({movies: newMovies})
         })
     }
@@ -63,16 +62,6 @@ class MoviesContainer extends Component {
         })
         .then(res => res.json())
         .then(res => {
-            // const newReviews = this.state.reviews.map(checkReview => {
-            //     const newReview = {...checkReview} 
-            //     if (checkReview === review) {
-            //         newReview.likes += 1 
-            //     }
-            //     return newReview 
-            // })
-            // this.setState({
-            //     reviews: newReviews 
-            // })
             const newMovies = [...this.state.movies] 
             const movieFound = newMovies.find(movie => movie.id === review.movie.id)
             const foundReview = movieFound.reviews.find(review => review.id === res.id)
@@ -80,7 +69,6 @@ class MoviesContainer extends Component {
             this.setState({
                 movies: newMovies 
             })
-            
         })
     }
 
@@ -89,17 +77,20 @@ class MoviesContainer extends Component {
             method: "DELETE" 
         })
         .then(res => res.json()) 
-        .then(res => {
-            const newMovies = this.state.movies.filter(movie => movie.reviews.id !== res.id) 
-            console.log(newMovies, res, res.id)
-            this.setState({
-                movies: newMovies
-            })
+        .then(this.removeDeletedReview)
+    }
+
+    removeDeletedReview = ({id, movie}) => {
+        const newMovies = [...this.state.movies]
+        const foundMovie = newMovies.find(m=> m.id === movie.id)
+        const reviewIndex = foundMovie.reviews.findIndex((review)=> review.id === id )
+        foundMovie.reviews.splice(reviewIndex, 1)
+        this.setState({
+            movies: newMovies
         })
     }
 
     componentDidMount() {
-        // this.fetchMovies() 
         this.recievedData() 
     }
     recievedData = () => {
@@ -112,13 +103,6 @@ class MoviesContainer extends Component {
             })
         })
     }
-    // fetchMovies = () => {
-    //     fetch(moviesUrl) 
-    //         .then(res => res.json()) 
-    //         .then(movie => this.setState({
-    //             movies: movie 
-    //         }))
-    // } 
 
     languageFilter = () => {
         let {movies, language } = this.state
