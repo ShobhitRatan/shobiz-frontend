@@ -19,7 +19,8 @@ class MoviesContainer extends Component {
             currentPage: 0,
             searchTerm: "",
             language: "All",
-            display: false 
+            display: false,
+            reviews: []
         }
         this.handlePageClick = this.handlePageClick.bind(this); 
     }
@@ -89,13 +90,10 @@ class MoviesContainer extends Component {
         })
         .then(res => res.json()) 
         .then(res => {
-            const newMovies = [...this.state.movies] 
-            console.log(res, res.movie.id, newMovies); 
-            const movieFound = newMovies.find(movie => movie.id === res.movie.id)
-            const foundReview = movieFound.reviews.find(review => review.id === res.id) 
-            newMovies.filter(review => review.id !== foundReview.id)  
+            const newMovies = this.state.movies.filter(movie => movie.reviews.id !== res.id) 
+            console.log(newMovies, res, res.id)
             this.setState({
-                movies: newMovies 
+                movies: newMovies
             })
         })
     }
