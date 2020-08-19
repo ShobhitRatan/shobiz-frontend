@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/shobiz-mod4-project-frontend/static/css/main.8b98c2c4.chunk.css",
+    "main.js": "/shobiz-mod4-project-frontend/static/js/main.eb8d717b.chunk.js",
+    "main.js.map": "/shobiz-mod4-project-frontend/static/js/main.eb8d717b.chunk.js.map",
+    "runtime-main.js": "/shobiz-mod4-project-frontend/static/js/runtime-main.566f5eb7.js",
+    "runtime-main.js.map": "/shobiz-mod4-project-frontend/static/js/runtime-main.566f5eb7.js.map",
+    "static/css/2.11829350.chunk.css": "/shobiz-mod4-project-frontend/static/css/2.11829350.chunk.css",
+    "static/js/2.4cdfb4ba.chunk.js": "/shobiz-mod4-project-frontend/static/js/2.4cdfb4ba.chunk.js",
+    "static/js/2.4cdfb4ba.chunk.js.map": "/shobiz-mod4-project-frontend/static/js/2.4cdfb4ba.chunk.js.map",
+    "index.html": "/shobiz-mod4-project-frontend/index.html",
+    "precache-manifest.fa6e660a17037100ec0b02a151e76003.js": "/shobiz-mod4-project-frontend/precache-manifest.fa6e660a17037100ec0b02a151e76003.js",
+    "service-worker.js": "/shobiz-mod4-project-frontend/service-worker.js",
+    "static/css/2.11829350.chunk.css.map": "/shobiz-mod4-project-frontend/static/css/2.11829350.chunk.css.map",
+    "static/css/main.8b98c2c4.chunk.css.map": "/shobiz-mod4-project-frontend/static/css/main.8b98c2c4.chunk.css.map",
+    "static/js/2.4cdfb4ba.chunk.js.LICENSE.txt": "/shobiz-mod4-project-frontend/static/js/2.4cdfb4ba.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.566f5eb7.js",
+    "static/css/2.11829350.chunk.css",
+    "static/js/2.4cdfb4ba.chunk.js",
+    "static/css/main.8b98c2c4.chunk.css",
+    "static/js/main.eb8d717b.chunk.js"
+  ]
+}
