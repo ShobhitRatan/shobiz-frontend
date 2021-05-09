@@ -6,9 +6,9 @@ import FilteredMovieContainer from './FilteredMovieContainer';
 import Filter from './Filter'
 
 // import Pagination from 'react-bootstrap-4-pagination'
-const reviews_url = "http://localhost:4000/reviews"
+const reviews_url = "https://shobiz-backend.herokuapp.com/reviews"
 
-const moviesUrl = "http://localhost:4000/movies" 
+const moviesUrl = "https://shobiz-backend.herokuapp.com/movies" 
 class MoviesContainer extends Component {
     constructor(props) {
         super(props); 

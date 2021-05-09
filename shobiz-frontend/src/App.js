@@ -23,7 +23,7 @@ class App extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token")
     if(token){
-      fetch("http://localhost:4000/users/stay_logged_in",{
+      fetch("https://shobiz-backend.herokuapp.com/users/stay_logged_in",{
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`
@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   handleLoginSubmit = (userInfo) => {
-    fetch("http://localhost:4000/login", {
+    fetch("https://shobiz-backend.herokuapp.com/login", {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -48,7 +48,7 @@ class App extends Component {
 
 
   handleRegisterSubmit = (userInfo) => {
-    fetch("http://localhost:4000/users", {
+    fetch("https://shobiz-backend.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json"
