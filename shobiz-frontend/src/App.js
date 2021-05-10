@@ -8,11 +8,6 @@ import {withRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
-// import Button from 'react-bootstrap/Button'
-// import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-// import {LinkContainer} from 'react-router-bootstrap'
-// import Navbar from 'react-bootstrap/Navbar'
-// import Nav from 'react-bootstrap/esm/Nav';
 import NavBar from './components/NavBar'
 
 class App extends Component {
@@ -65,9 +60,7 @@ class App extends Component {
       this.setState(resp, () => {
         this.props.history.push("/profile")
       })
-    } else {
-      // alert(resp.error)
-    }
+    } 
   }
 
   renderForm = (routerProps) => {
@@ -96,51 +89,9 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        {/* <NavBar bg="light" expand="lg"/>
-        <Switch>
-          <Route path="/login" render={ this.renderForm } />
-          <Route path="/register" render={ this.renderForm } />
-          <Route path="/profile" render={this.renderProfile} />
-          <Route path="/movies" exact component={MoviesContainer} />
-          <Route path="/" exact component={Home} />
-          <Route render={ () => <p>Page not Found</p> } />
-        </Switch> */}
             <Jumbotron > 
               <Container>
                 <h1 className="header">Welcome to Shobiz</h1>
-                {/* <h2>
-                  <ButtonToolbar className="custom-btn-toolbar">
-                    <LinkContainer to="/">
-                      <Button>Home</Button>
-                    </LinkContainer>
-                    <LinkContainer to="/login">
-                      <Button>Login</Button>
-                    </LinkContainer>
-                    <LinkContainer to="/register">
-                      <Button>Register</Button>
-                    </LinkContainer>
-                    <LinkContainer to="/profile">
-                      <Button>Profile</Button>
-                    </LinkContainer>
-                    <LinkContainer to="/movies">
-                      <Button>Movies</Button>
-                    </LinkContainer>
-                  </ButtonToolbar>
-                </h2> */}
-                {/* <>
-                  <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
-                    <Navbar.Brand href="/">Shobiz</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" /> 
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                      <Nav className="mr-auto">
-                        <Nav.Link href="/login">Login</Nav.Link>
-                        <Nav.Link href="/register">Register</Nav.Link>
-                        <Nav.Link href="/profile">Profile</Nav.Link>
-                        <Nav.Link href="/movies">Movies</Nav.Link>
-                      </Nav>
-                    </Navbar.Collapse>
-                  </Navbar>
-                </> */}
                 <NavBar /> 
                   <Switch>
                     <Route path="/login" render={this.renderForm} /> 

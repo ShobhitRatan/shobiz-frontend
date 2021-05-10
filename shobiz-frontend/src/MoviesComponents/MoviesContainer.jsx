@@ -146,16 +146,6 @@ class MoviesContainer extends Component {
         })
     }
 
-    // filterMovies = () => {
-    //     if (this.state.filter === 'All') {
-    //         return this.state.movies; 
-    //     }
-    //     else {
-    //         return this.state.movies.filter(movie => {
-    //             if (movie.language === this.state.filter) return true; 
-    //         })
-    //     }
-    // }
 
     render() {
         return (
