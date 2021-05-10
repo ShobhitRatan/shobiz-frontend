@@ -86,15 +86,25 @@ class App extends Component {
     }
   }
 
+  logOutHandler = () => {
+    localStorage.removeItem("token")
+    this.props.history.push("/login") 
+    this.setState({
+      user: null,
+      token: ''
+    })
+  } 
+
   render(){
     return (
       <div className="App">
             <Jumbotron > 
               <Container>
                 <h1 className="header">Welcome to Shobiz</h1>
-                <NavBar /> 
+                <NavBar user={this.state.user} clickHandler={this.logOutHandler}/> 
                   <Switch>
                     <Route path="/login" render={this.renderForm} /> 
+                    <Route path="/logout" render={this.renderForm} /> 
                     <Route path="/register" render={this.renderForm} /> 
                     <Route path="/profile" render={this.renderProfile} />
                     <Route path="/movies" render={() => <MoviesContainer user={this.state.user} userId={this.state.user.id}/>} /> 
