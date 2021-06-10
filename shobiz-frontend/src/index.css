@@ -116,3 +116,8 @@ nav {
   font-family: monospace;
   margin: 3px;
 }
+
+.img-fluid {
+  position: relative;
+  left: 100px;
+}
